@@ -2,42 +2,42 @@
 RandomForestClassifier(bootstrap=True, compute_importances=None,
             criterion=gini, max_depth=None, max_features=None,
             min_density=None, min_samples_leaf=1, min_samples_split=2,
-            n_estimators=110, n_jobs=1, oob_score=False, random_state=None,
+            n_estimators=30, n_jobs=1, oob_score=False, random_state=None,
             verbose=0)
 トレーニングデータでCVした時の平均スコア
-0.749 (+/- 0.002) for {'max_features': 'auto', 'n_estimators': 10}
-0.744 (+/- 0.002) for {'max_features': 'auto', 'n_estimators': 30}
-0.748 (+/- 0.001) for {'max_features': 'auto', 'n_estimators': 50}
-0.744 (+/- 0.002) for {'max_features': 'auto', 'n_estimators': 70}
-0.743 (+/- 0.000) for {'max_features': 'auto', 'n_estimators': 90}
-0.745 (+/- 0.000) for {'max_features': 'auto', 'n_estimators': 110}
-0.743 (+/- 0.000) for {'max_features': 'auto', 'n_estimators': 130}
-0.744 (+/- 0.000) for {'max_features': 'auto', 'n_estimators': 150}
-0.749 (+/- 0.002) for {'max_features': 'sqrt', 'n_estimators': 10}
-0.744 (+/- 0.002) for {'max_features': 'sqrt', 'n_estimators': 30}
-0.748 (+/- 0.001) for {'max_features': 'sqrt', 'n_estimators': 50}
-0.744 (+/- 0.002) for {'max_features': 'sqrt', 'n_estimators': 70}
-0.741 (+/- 0.001) for {'max_features': 'sqrt', 'n_estimators': 90}
-0.745 (+/- 0.002) for {'max_features': 'sqrt', 'n_estimators': 110}
-0.745 (+/- 0.001) for {'max_features': 'sqrt', 'n_estimators': 130}
-0.750 (+/- 0.000) for {'max_features': 'sqrt', 'n_estimators': 150}
-0.739 (+/- 0.001) for {'max_features': 'log2', 'n_estimators': 10}
-0.735 (+/- 0.003) for {'max_features': 'log2', 'n_estimators': 30}
-0.738 (+/- 0.002) for {'max_features': 'log2', 'n_estimators': 50}
-0.736 (+/- 0.001) for {'max_features': 'log2', 'n_estimators': 70}
-0.735 (+/- 0.000) for {'max_features': 'log2', 'n_estimators': 90}
-0.734 (+/- 0.002) for {'max_features': 'log2', 'n_estimators': 110}
-0.737 (+/- 0.001) for {'max_features': 'log2', 'n_estimators': 130}
+0.745 (+/- 0.001) for {'max_features': 'auto', 'n_estimators': 10}
+0.747 (+/- 0.003) for {'max_features': 'auto', 'n_estimators': 30}
+0.743 (+/- 0.001) for {'max_features': 'auto', 'n_estimators': 50}
+0.742 (+/- 0.000) for {'max_features': 'auto', 'n_estimators': 70}
+0.742 (+/- 0.001) for {'max_features': 'auto', 'n_estimators': 90}
+0.743 (+/- 0.001) for {'max_features': 'auto', 'n_estimators': 110}
+0.743 (+/- 0.001) for {'max_features': 'auto', 'n_estimators': 130}
+0.745 (+/- 0.001) for {'max_features': 'auto', 'n_estimators': 150}
+0.745 (+/- 0.001) for {'max_features': 'sqrt', 'n_estimators': 10}
+0.747 (+/- 0.003) for {'max_features': 'sqrt', 'n_estimators': 30}
+0.743 (+/- 0.001) for {'max_features': 'sqrt', 'n_estimators': 50}
+0.742 (+/- 0.000) for {'max_features': 'sqrt', 'n_estimators': 70}
+0.746 (+/- 0.000) for {'max_features': 'sqrt', 'n_estimators': 90}
+0.747 (+/- 0.001) for {'max_features': 'sqrt', 'n_estimators': 110}
+0.749 (+/- 0.002) for {'max_features': 'sqrt', 'n_estimators': 130}
+0.750 (+/- 0.001) for {'max_features': 'sqrt', 'n_estimators': 150}
+0.741 (+/- 0.004) for {'max_features': 'log2', 'n_estimators': 10}
+0.747 (+/- 0.000) for {'max_features': 'log2', 'n_estimators': 30}
+0.739 (+/- 0.003) for {'max_features': 'log2', 'n_estimators': 50}
+0.739 (+/- 0.001) for {'max_features': 'log2', 'n_estimators': 70}
+0.736 (+/- 0.002) for {'max_features': 'log2', 'n_estimators': 90}
+0.740 (+/- 0.001) for {'max_features': 'log2', 'n_estimators': 110}
+0.739 (+/- 0.001) for {'max_features': 'log2', 'n_estimators': 130}
 0.737 (+/- 0.002) for {'max_features': 'log2', 'n_estimators': 150}
-0.740 (+/- 0.004) for {'max_features': None, 'n_estimators': 10}
-0.754 (+/- 0.005) for {'max_features': None, 'n_estimators': 30}
-0.751 (+/- 0.008) for {'max_features': None, 'n_estimators': 50}
-0.756 (+/- 0.003) for {'max_features': None, 'n_estimators': 70}
-0.757 (+/- 0.003) for {'max_features': None, 'n_estimators': 90}
-0.759 (+/- 0.007) for {'max_features': None, 'n_estimators': 110}
-0.752 (+/- 0.003) for {'max_features': None, 'n_estimators': 130}
-0.757 (+/- 0.003) for {'max_features': None, 'n_estimators': 150}
+0.739 (+/- 0.005) for {'max_features': None, 'n_estimators': 10}
+0.761 (+/- 0.008) for {'max_features': None, 'n_estimators': 30}
+0.754 (+/- 0.002) for {'max_features': None, 'n_estimators': 50}
+0.757 (+/- 0.001) for {'max_features': None, 'n_estimators': 70}
+0.761 (+/- 0.008) for {'max_features': None, 'n_estimators': 90}
+0.757 (+/- 0.002) for {'max_features': None, 'n_estimators': 110}
+0.757 (+/- 0.003) for {'max_features': None, 'n_estimators': 130}
+0.753 (+/- 0.003) for {'max_features': None, 'n_estimators': 150}
 Traceback (most recent call last):
   File "classificasion.py", line 118, in <module>
-    y_true, y_pred = label_test_s, clf.predict(data_test_s)
+    tuned_parameters = [{'n_estimators': [10, 30, 50, 70, 90, 110, 130, 150], 'max_features': ['auto', 'sqrt', 'log2', None]}]
 NameError: name 'label_test_s' is not defined

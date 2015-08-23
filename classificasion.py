@@ -10,6 +10,8 @@ from gensim import corpora, matutils
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import svm
 from sklearn.grid_search import GridSearchCV
+from sklearn import datasets
+from sklearn.decomposition import TruncatedSVD
 
 def readfile(fname):
     
@@ -72,11 +74,17 @@ if __name__ == "__main__":
         
         #入力文をbag-of-wordsで表現
         vec = dic.doc2bow(words)
-    
+        
         #さらに特徴ベクトルに変換
         dense = list(matutils.corpus2dense([vec], num_terms=len(dic)).T[0])
         data_train.append(dense) #訓練データリストに追加
     
+    #特徴量の次元を圧縮
+    """
+    lsa = TruncatedSVD(500)
+    reduced_data_train = lsa.fit_transform(data_train)
+    dic = corpora.Dictionary(reduced_data_train)
+    """
     #------ 学習(start) ------
     #Random Forest Classifier
     estimator = RandomForestClassifier()
@@ -96,13 +104,19 @@ if __name__ == "__main__":
     #------ 予測 ------
     label_predict = estimator.predict(data_test)
     
-
-
-    #正解率を表示
-    #print estimator.score(data_test, label_test)
-
+    """
+    "ris = datasets.load_iris()
+    features = iris.data
+    labels = iris.target
+    print features
+    print labels
+    """
     
-    # この掛け合わせを試す
+    #正解率を表示
+    print estimator.score(data_test, label_test)
+
+    """
+    " この掛け合わせを試す
     tuned_parameters = [{'n_estimators': [10, 30, 50, 70, 90, 110, 130, 150], 'max_features': ['auto', 'sqrt', 'log2', None]}]
 
     clf = GridSearchCV(RandomForestClassifier(), tuned_parameters, cv=2, scoring='accuracy', n_jobs=-1)
@@ -115,7 +129,7 @@ if __name__ == "__main__":
     for params, mean_score, all_scores in clf.grid_scores_:
         print("{:.3f} (+/- {:.3f}) for {}".format(mean_score, all_scores.std() / 2, params))
 
-    y_true, y_pred = label_test_s, clf.predict(data_test_s)
+    y_true, y_pred = label_test_s, clf.predict(data_test)
     print(classification_report(y_true, y_pred))
-
+    """
 
