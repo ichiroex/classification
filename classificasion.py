@@ -1,7 +1,15 @@
 #coding: utf-8
+"""
+author: ichiroex
+
+ref: http://qiita.com/yasunori/items/31a23eb259482e4824e2
+"""
+
 import codecs
 from gensim import corpora, matutils
 from sklearn.ensemble import RandomForestClassifier
+from sklearn import svm
+from sklearn.grid_search import GridSearchCV
 
 def readfile(fname):
     
@@ -39,11 +47,9 @@ def make_test_data(dic):
         #入力文をbag-of-wordsで表現
         vec = dic.doc2bow(words)
     
-        #さらに特徴ベクトルに変換
+        #さらに特徴ベクトルに変換. 訓練データから作成した辞書を使う.
         dense = list(matutils.corpus2dense([vec], num_terms=len(dic)).T[0])
         data_test.append(dense) #訓練データリストに追加
-    
-    print label_test
     
     return data_test, label_test
 
@@ -71,22 +77,45 @@ if __name__ == "__main__":
         dense = list(matutils.corpus2dense([vec], num_terms=len(dic)).T[0])
         data_train.append(dense) #訓練データリストに追加
     
-    #学習
+    #------ 学習(start) ------
+    #Random Forest Classifier
     estimator = RandomForestClassifier()
     estimator.fit(data_train, label_train)
     
+    #Suppor Vector Machine
+    """
+    estimator = svm.SVC()
+    estimator.fit(data_train, label_train)
+    """
+    #------ 学習(end) ------
+    
+
+    #テストデータをベクトル化
     data_test, label_test = make_test_data(dic)
 
-    #予測
+    #------ 予測 ------
     label_predict = estimator.predict(data_test)
-    cnt = 0
-    for i in range(len(label_predict)):
-        print label_predict[i], label_test[i]
-        
-        if label_predict[i] == label_test[i]:
-            cnt += 1
-
-    val = float(cnt) / float(len(label_predict))
-    print float(val)
     
+
+
+    #正解率を表示
+    #print estimator.score(data_test, label_test)
+
+    
+    # この掛け合わせを試す
+    tuned_parameters = [{'n_estimators': [10, 30, 50, 70, 90, 110, 130, 150], 'max_features': ['auto', 'sqrt', 'log2', None]}]
+
+    clf = GridSearchCV(RandomForestClassifier(), tuned_parameters, cv=2, scoring='accuracy', n_jobs=-1)
+    clf.fit(data_train, label_train)
+
+    print("ベストパラメタを表示")
+    print(clf.best_estimator_)
+
+    print("トレーニングデータでCVした時の平均スコア")
+    for params, mean_score, all_scores in clf.grid_scores_:
+        print("{:.3f} (+/- {:.3f}) for {}".format(mean_score, all_scores.std() / 2, params))
+
+    y_true, y_pred = label_test_s, clf.predict(data_test_s)
+    print(classification_report(y_true, y_pred))
+
 
