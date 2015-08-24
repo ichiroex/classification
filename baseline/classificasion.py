@@ -13,8 +13,6 @@ from sklearn.grid_search import GridSearchCV
 from sklearn import datasets
 from sklearn.decomposition import TruncatedSVD
 from sklearn import cross_validation
-import numpy as np
-from sklearn.feature_extraction.text import TfidfTransformer
 
 def get_score(clf, train_features, train_labels):
     
@@ -25,11 +23,8 @@ def get_score(clf, train_features, train_labels):
 
 
 def get_accuracy(clf, train_features, train_labels):
-    #print train_features
-    data_train = np.array(train_features)
-    label_train = np.array(train_labels)
-    #print data_train
-    scores = cross_validation.cross_val_score(clf, data_train, label_train, cv=10, n_jobs = 10)
+    print train_features
+    scores = cross_validation.cross_val_score(clf, train_features, train_labels, cv=10)
     print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 
 def readfile(fname):
@@ -98,11 +93,6 @@ if __name__ == "__main__":
         dense = list(matutils.corpus2dense([vec], num_terms=len(dic)).T[0])
         data_train.append(dense) #訓練データリストに追加
     
-    #print data_train[0]
-    transformer = TfidfTransformer()
-    tfidf = transformer.fit_transform(data_train)
-    data_train = tfidf.toarray()
-
     #特徴量の次元を圧縮
     """
     lsa = TruncatedSVD(500)
@@ -116,8 +106,8 @@ if __name__ == "__main__":
     
     #------ 学習(end) ------
     
-    #get_score(estimator, data_train, label_train)
-    get_accuracy(estimator, data_train, label_train)
+    get_score(estimator, data_train, label_train)
+    #get_accuracy(estimator, data_train, label_train)
 
     
 
