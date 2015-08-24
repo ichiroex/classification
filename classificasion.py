@@ -15,6 +15,7 @@ from sklearn.decomposition import TruncatedSVD
 from sklearn import cross_validation
 import numpy as np
 from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.neighbors import KNeighborsClassifier
 
 def get_score(clf, train_features, train_labels):
     
@@ -111,7 +112,11 @@ if __name__ == "__main__":
     """
     #------ 学習(start) ------
     #Random Forest Classifier
-    estimator = RandomForestClassifier()
+    #estimator = RandomForestClassifier()
+    #estimator.fit(data_train, label_train)
+
+    #K Neighbors Classifier
+    estimator = KNeighborsClassifier()
     estimator.fit(data_train, label_train)
     
     #------ 学習(end) ------
@@ -152,7 +157,7 @@ if __name__ == "__main__":
     for params, mean_score, all_scores in clf.grid_scores_:
         print("{:.3f} (+/- {:.3f}) for {}".format(mean_score, all_scores.std() / 2, params))
 
-    y_true, y_pred = label_test_s, clf.predict(data_test)
+    y_true, y_pred = label_test, clf.predict(data_test)
     print(classification_report(y_true, y_pred))
     """
 
